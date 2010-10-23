@@ -11,7 +11,10 @@ class Make(BaseMake):
         }, 'w')
         cms_settings.render_to('urls.py', 'chunks/redsolutioncms/urls.pyt')
         cms_settings.render_to(['..', 'templates', 'robots.txt'],
-            'chunks/redsolutioncms/robots.txt')
+            'chunks/redsolutioncms/robots.txt', {}, 'w')
+        # render initial data fixture
+        cms_settings.render_to(['..', 'fixtures', 'initial_data.json'],
+            'chunks/redsolutioncms/initial_data.json')
         cms_settings.base_template = 'base_chunks.html'
         cms_settings.save()
 
