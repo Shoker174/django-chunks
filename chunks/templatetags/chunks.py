@@ -1,7 +1,7 @@
 from django import template
 from django.conf import settings
 from django.core.cache import cache
-from django.db import models
+from django.apps import apps
 from hashlib import md5 
 
 register = template.Library()
@@ -13,7 +13,7 @@ def get_cache_suffix():
     except AttributeError:
         return "_%s" % md5().hexdigest()
 
-Chunk = models.get_model('chunks', 'chunk')
+Chunk = apps.get_model('chunks.chunk')
 CACHE_PREFIX = 'chunks_'
 CACHE_SUFFIX = get_cache_suffix()
 
